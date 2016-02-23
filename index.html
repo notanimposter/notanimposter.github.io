@@ -1,0 +1,106 @@
+<html>
+<head>
+	<title>website</title>
+	<link rel='stylesheet/less' href='main.less'>
+	<script src="less.min.js" type="text/javascript"></script>
+	<link rel='stylesheet/less' href='prettify/prettify.css'>
+	<script src='jquery-2.1.4.min.js'></script>
+	<script src="jquery.mousewheel.min.js"></script>
+	<link rel='stylesheet' href='jquery.mCustomScrollbar.min.css'>
+	<script src="jquery.mCustomScrollbar.concat.min.js"></script>
+	<script src="marked.min.js"></script>
+	<script src="prettify/prettify.js"></script>
+	<script src="md.js"></script>
+	
+</head>
+<body>
+	<div class='title'>website</div>
+	<ul class='navBar'>
+		<li class='navButton'>
+		home
+		</li>
+		<li class='navButton'>
+		other
+		</li>
+		<li class='navButton'>
+		stuff
+		</li>
+		<li class='navButton'>
+		place
+		</li>
+		<li class='navButton'>
+		holder
+		</li>
+	</ul>
+	<div class='contentWrapper'>
+		<div class='contentArea'>
+			<div class='content'>
+				<h1 data-title='test'>test</h1>
+				<p>inputs:
+				<br>
+				<input type='checkbox'/><label>beep</label>
+				<input type='range'/>
+				<input type='text'/>
+				input button:
+				<input type='button' value='boop'/>
+				button button:
+				<button>boop</button>
+			</div>
+			<div class='content'>
+				<h1>yo</h1>
+				<p>This is what a code block looks like:</p>
+				<pre><code class="prettyprint linenums">function beep()
+	print("beep")
+end
+
+function boop()
+	print("boop")
+end
+
+function boop2()
+	print("boop2")
+end</code></pre>
+			</div>
+			<div class='content'>
+			<m-d>
+# markdown testing
+
+I strongly recommend against using any `return` tags.
+```lua
+function beep()
+	public
+end
+
+function boop()
+	print("boop")
+end
+
+function boop2()
+	print("boop2")
+end
+```
+
+* item 1
+* item 2
+* item 3
+
+| Tables   |      Are      |  Cool |
+|----------|:-------------:|------:|
+| col 1 is |  left-aligned | $1600 |
+| col 2 is |    centered   |   $12 |
+| col 3 is | right-aligned |    $1 |
+			</m-d>
+			</div>
+			<div class='content'></div>
+			<div class='content'></div>
+		</div>
+	</div>
+	
+	<!--div class='mainScrollBar'><div></div></div-->
+	<div class='footer'>Info footer whatever random shit etc</div>
+	<script src='content.js'></script>
+	<script src='nav.js'></script>
+	<script>prettyPrint();</script>
+</body>
+
+</html>

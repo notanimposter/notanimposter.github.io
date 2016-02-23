@@ -1,0 +1,517 @@
+@light: #ddd;
+@dark: #444;
+@mid: #777;
+@shadowColor: #111;
+@shadowColor: #000;
+@blue: #28e;
+@red: #e42;
+@boxShadow: 0px 0px 10px 1px @shadowColor;
+@innerShadow: inset 0px 0px 10px 0px @shadowColor;
+@textShadow: 0px 0px 10px @shadowColor;
+
+*::selection, md::shadow *::selection {
+	color: @light;
+	background-color: @blue;
+	text-shadow: none;
+}
+
+.light {
+	background-color: @light;
+	color: @dark;
+	text-shadow: none;
+	//.innerTextShadow(@light, @dark, @shadowColor);
+}
+.dark {
+	background-color: @dark;
+	color: @light;
+	text-shadow: @textShadow;
+}
+.shadow {
+	box-shadow: @boxShadow;
+}
+.innerShadow {
+	box-shadow: @innerShadow;
+}
+.noUserSelect {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+.innerTextShadow(@fg, @bg, @shadow) {
+	//background: red;
+	color: fade(black, abs(lightness(@fg) - lightness(@bg)) );
+	text-shadow: 0px 0px 10px @fg, 0 0 0 @shadow, 0px 0px 10px @fg;
+}
+code, m-d::shadow code {
+	display: inline;
+	
+	list-style-type: none;
+	font-family: monospace;
+	font-size: 10pt;
+	tab-size: 4ch;
+	padding-left: 5px;
+	padding-right: 5px;
+	.innerShadow();
+	.dark();
+	
+	white-space: pre;
+	.str { color: #ffa0a0 } /* string pink */
+	.kwd { color: #f0e68c; font-weight: bold }
+	.com { color: #87ceeb } /* comment skyblue */
+	.typ { color: #98fb98 } /* type lightgreen */
+	.lit { color: #cd5c5c } /* literal darkred */
+	.pun { color: #dddddd } /* punctuation */
+	.pln { color: #dddddd }    /* plaintext */
+	.tag { color: #f0e68c; font-weight: bold } /* html/xml tag lightyellow */
+	.atn { color: #bdb76b; font-weight: bold } /* attribute name khaki */
+	.atv { color: #ffa0a0 } /* attribute value pink */
+	.dec { color: #98fb98 } /* decimal lightgreen */
+}
+pre > code, m-d::shadow pre > code {
+	height: auto;
+	display: block;
+	padding-left: 0;
+	padding-right: 0;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+ol.linenums, m-d::shadow ol.linenums {
+	margin-top: 0;
+	margin-bottom: 0;
+	color: #AEAEAE;
+	li {
+		background: transparent !important;
+		list-style-type: decimal-leading-zero;
+	}
+	
+	//li.L0,li.L1,li.L2,li.L3,li.L5,li.L6,li.L7,li.L8 {
+	//	list-style-type: none;
+	//}
+}
+	
+
+
+
+h1, .header {
+	margin: 0 0 0 0;
+	font: bold 4em monospace;
+	text-shadow: none;
+	//.light();
+	background-color: transparent;
+	.innerTextShadow(@light, @dark, @shadowColor);
+	/*
+	display: block;
+	position: relative;
+	color: black;
+	
+	&:before  {
+		content: ~"attr(data-title)";
+		position: absolute;
+		color: transparent;
+		text-shadow: 0 0 5px rgba(255,255,255,(25.5/red(@dark)));
+		top: 0px;
+		left: 0px;
+	} //why is this better? is there a non-stupid way to do this?
+	*/
+}
+h2, m-d::shadow h2 {
+	.header();
+	font: bold 2.8em monospace;
+}
+h3, m-d::shadow h3 {
+	.header();
+	font: bold 2.3em monospace;
+}
+h4, m-d::shadow h4 {
+	.header();
+	font: bold 2em monospace;
+}
+h5, m-d::shadow h5 {
+	.header();
+	font: bold 1.8em monospace;
+}
+h6,m-d::shadow h6 {
+	.header();
+	font: bold 1.6em monospace;
+}
+table, m-d::shadow table {
+	.dark();
+	.innerShadow();
+	border-collapse: separate;
+	border-spacing: 0px;
+	thead, tbody {
+		tr {
+			td, th {
+				padding-left: 10px;
+				padding-right: 10px;
+				height: 1.5em;
+				border-top: 0px solid transparent;
+				border-left: 0px solid transparent;
+				border-right: 0px solid transparent;
+				border-bottom: 1px solid @mid;
+			}
+			:not(:last-child):not(:first-child) {
+				border-right: 1px solid @mid;
+			}
+			:nth-child(2) {
+				border-left: 1px solid @mid;
+			}
+			:first-child {
+				border-bottom: 1px solid transparent;
+				border-image: linear-gradient(to right, transparent 10px, @mid 20px);
+				border-image-slice: 1;
+			}
+			:last-child {
+				border-bottom: 1px solid transparent;
+				border-image: linear-gradient(to left, transparent 10px, @mid 20px);
+				border-image-slice: 1;
+			}
+			
+		}
+	}
+	thead {
+		:first-child {
+			td:not(:last-child):not(:first-child), th:not(:last-child):not(:first-child) {
+				border-right: 1px solid transparent;
+				border-image: linear-gradient(to bottom, transparent 10px, @mid 20px);
+				border-image-slice: 1;
+			}
+			:nth-child(2) {
+				border-left: 1px solid transparent;
+				border-image: linear-gradient(to bottom, transparent 10px, @mid 20px);
+				border-image-slice: 1;
+			}
+			:first-child {
+				border-right: 0px solid transparent;
+			}
+		}
+	}
+	tbody {
+		:last-child {
+			td:not(:last-child):not(:first-child), th:not(:last-child):not(:first-child) {
+				border-right: 1px solid transparent;
+				border-image: linear-gradient(to top, transparent 10px, @mid 20px);
+				border-image-slice: 1;
+			}
+			td {
+				border-bottom: 0px solid transparent;
+			}
+		}
+	}
+	thead, tbody {
+		tr {
+			:last-child {
+				border-right: 0px solid transparent;
+			}
+		}
+	}
+}
+
+.title {
+	margin: 30px;
+	margin-bottom: 0px;
+	font-family: monospace;
+	text-shadow: 0 0 15px @shadowColor;
+	font-size: 75px;
+	padding-left: 10px;
+}
+
+body {
+	overflow-y: scroll;
+	overflow-x: hidden;
+	font-family: sans-serif;
+	margin: 0 0 0 0;
+	.dark();
+	display: flex;
+	flex-direction: column;
+	.innerShadow();
+}
+
+.contentWrapper {
+	width: 100vw;
+	overflow-x: hidden;
+	.contentArea {
+		transition: transform .5s ease-in-out;
+		width: 500vw;
+		flex-grow: 0;
+		flex-shrink: 0;
+		align-content: center;
+		display: flex;
+		flex-flow: row nowrap;
+		.content {
+			overflow-y: hidden; //maybe change later?
+			margin: 30px;
+			flex-grow: 0;
+			flex-shrink: 0;
+			padding: 30px;
+			width: ~"calc(100vw - 120px)";
+			.light();
+			.shadow();
+			height:200vh;
+		}
+
+	}
+}
+.footer {
+	width: ~"calc(100vw - 60px)";
+	margin-bottom: 30px;
+	padding: 0 30px 0 30px;
+	text-align: center;
+	.dark();
+	background: transparent;
+	opacity: .3;
+}
+
+/* NAV */
+
+.navBar {
+	font-size: 75px;
+	font-family: monospace;
+	width: ~"calc(13ch + 20px)";
+	padding: 0;
+	display: flex;
+	flex-direction: row;
+	margin: 30px;
+	margin-bottom: 0px;
+	text-shadow: none;
+	list-style-type: none;
+	.noUserSelect();
+	
+	li {
+		position: relative;
+		overflow-x: hidden;
+		&:after {
+			content: "";
+			position: absolute;
+			right: 0px;
+			width: 10px;
+			top: 0px;
+			bottom: 0px;
+			background: inherit;
+			opacity: 1.0;
+			transition:
+				opacity .3s ease-in;
+		}
+	}
+	
+	
+	li:not(.spacer) {
+		width: 1ch;
+		height: 100px;
+		padding-left: 10px;
+		padding-right: 10px;
+		
+		line-height: 100px;
+		font-weight: bold;
+		
+		background-color: @light;
+		.innerTextShadow(@light, @dark, @shadowColor);
+		.shadow();
+		overflow: hidden;
+		cursor: pointer;
+		flex-grow: 0.0001;
+		flex-shrink: 0;
+		//word-break: break-all;
+		transition:
+			flex-grow .3s ease-in,
+			background .3s ease-in,
+			color .3s ease-in,
+			text-shadow .3s ease-in;
+	}
+	
+	.spacer:hover + li,
+	li:not(.spacer):hover {
+		background: @blue;
+		.innerTextShadow(@blue, @dark, @shadowColor);
+		transition:
+			flex-grow .3s ease-in,
+			background .3s ease-in,
+			color .3s ease-in,
+			text-shadow .3s ease-in;
+	}
+	li.open {
+		flex-grow: 1;
+		transition:
+			flex-grow .3s ease-in,
+			background .3s ease-in,
+			color .3s ease-in,
+			text-shadow .3s ease-in;
+		&:after {
+			opacity: 0.0;
+			transition:
+				opacity .3s ease-in;
+		}
+	}
+	li.spacer {
+		flex-shrink: 0;
+		flex-grow: 0;
+		width: 10px;
+		z-index: 0;
+		height: 100px;
+		background: rgba(0,0,0,0);
+	}
+}
+p, m-d::shadow p {
+	.light();
+	background: transparent;
+	//.innerTextShadow(@light, @dark, @shadowColor)
+}
+
+.button, button {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	border: none;
+	outline: none;
+	height: 20px;
+	margin:0;
+	vertical-align:middle;
+	font-family: monospace;
+	padding: 0 6px; //firefox
+	.dark();
+	.innerShadow();
+	transition: background .2s ease-in;
+	cursor: pointer;
+	&:hover {
+		background: @blue;
+	}
+	&:active {
+		padding: 0 6px; //firefox
+		transition: background .01s ease-in;
+		background: @red;
+	}
+}
+
+input {
+	&[type=checkbox] {
+		vertical-align:middle;
+		margin: 0;
+		outline: none;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		display: inline-block;
+		width: 20px;
+		height: 20px;
+		background: @dark;
+		position: relative;
+		transition: background .2s ease-in;
+		.innerShadow();
+		&:before {
+			transition: opacity .2s ease-in;
+			text-shadow: @textShadow;
+			text-align: center;
+			background: transparent;
+			position: absolute;
+			padding-top: 3px;
+			height: 17px;
+			width: 20px;
+			color: @light;
+			content: "✔";
+			line-height: 12px;
+			font-family: monospace;
+			font-size: 12px;
+			margin: 0;
+			opacity: 0;
+			
+		}
+		&:checked,
+		&:hover {
+			background:@blue;
+			&:checked:before {
+				opacity: 1;
+			}
+		}
+	}
+
+	&[type=range] {
+		//transition at some point???
+		vertical-align:middle;
+		outline: none;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		background: none;
+		cursor: pointer;
+		display: inline-block;
+		height: 20px;
+		overflow: hidden;
+		position: relative;
+		margin: 0;
+		&:after { //fix the shadow in firefox
+			position: absolute;
+			top: 0;
+			right: 0;
+			left: 0px;
+			content: "";
+			height: 30px;
+			background: transparent;
+			pointer-events: none;
+			.innerShadow();
+		}
+		&::-webkit-slider-runnable-track {
+			-webkit-appearance: none;
+			background: @dark;
+			height: 20px;
+		}
+		&::-webkit-slider-thumb {
+			width: 0;
+			height: 0;
+			-webkit-appearance: none;
+			position: relative;
+			&:before {
+				position: absolute;
+				top: 0;
+				right: ~"calc(50% + 1px)";
+				left: -200px;
+				background: @blue;
+				content: "";
+				height: 20px;
+				pointer-events: none;
+				box-shadow: 0px 0px 1px 1px @blue;
+			}
+		}
+
+		&::-moz-range-track {
+			-moz-appearance: none;
+			background: @dark;
+			width: 100%;
+			height: 20px;
+		}
+
+		&::-moz-range-thumb {
+			width: 20px;
+			height: 20px;
+			-moz-appearance: none;
+			background: transparent;
+			border: 0;
+			border-radius: 0;
+			box-shadow: 0;
+			position: relative;
+		}
+
+		&::-moz-range-progress {
+			//fix being 1px too far to the right
+			background: @blue;
+			height: 20px;
+			box-shadow: 0px 0px 1px 1px @blue;
+		}
+
+	}
+	&[type=text] {
+		font-family: monospace;
+		vertical-align:middle;
+		height: 20px;
+		outline: none;
+		.dark();
+		border: none;
+		.innerShadow();
+		//fix selected shadow
+		transition: background .2s ease-in;
+		&:focus {
+			background: @blue;
+		}
+	}
+	&[type=button] {
+		.button();
+	}
+}
